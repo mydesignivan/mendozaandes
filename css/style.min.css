@@ -1,0 +1,41 @@
+.fleft{float:left!important}
+.fright{float:right!important}
+.align-center{text-align:center!important}
+.align-right{text-align:right!important}
+.border{border:1px solid red!important}
+.text-size-80{font-size:80%!important}
+.text-size-90{font-size:90%!important}
+.trow{float:left;clear:both;width:100%;margin:5px 0}
+.trow-w1{width:415px!important;text-align:right}
+h1.title-section{float:left;clear:both;font-size:200%;font-weight:700;color:#D38D2A;margin-left:20px;border-bottom:2px solid #D38D2A;width:auto!important;text-align:left;padding:0 100px 5px 0}
+.line-dashed{float:left;width:100%;height:2px;clear:both;border-bottom:1px dashed #58585A;margin:15px 0}
+.valid-success{float:right!important;background:transparent url(../images/icon_success.png) no-repeat!important;width:16px;height:16px;border:none!important;margin:0!important;padding:0!important}
+.valid-error{background:#FBE3E4;color:#8a1f11;border:2px solid #FBC2C4;margin-bottom:1em;font-weight:400;font-size:90%;float:right;clear:both;margin-top:5px;padding:5px}
+a.link-moreinfo{font-size:90%;color:#D38D2A;font-style:italic;font-weight:700}
+.label1{width:100px;float:left;text-align:right;margin-right:10px}
+input[type=text],input[type=password],textarea{text-align:left;font-family:Verdana, Arial, Helvetica, sans-serif;font-size:100%;margin:0!important;padding:3px!important}
+.input-contact{width:300px}
+.textarea-contact{width:300px;height:150px}
+.button{background-color:#D38D2A;color:#fff;font-size:120%;border:none;padding:0 10px}
+.loader-back{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:none;z-index:1000}
+.loader-image{position:fixed;top:0;left:0;background:url(../images/ajax-loader2.gif) no-repeat center;width:100%;height:100%;z-index:1001}
+.header .logo{float:left;margin:50px 0 0 20px}
+.header-bottom{clear:left;float:left;background:url(../images/bg-header-bottom.jpg) no-repeat;width:960px;height:176px}
+.header .menu{float:right;background:url(../images/menu.png) no-repeat;width:730px;height:50px}
+.header .menu ul{float:left;margin:18px 0 0 100px}
+.header .menu li{display:inline;float:left;border-right:2px solid #000}
+.header .menu li a{display:block;color:#000;font-weight:700;font-size:125%;padding:0 15px}
+.header .menu li a:hover{color:#fff}
+.header .menu li.no-line{border-right:none}
+.header .menu li.current a{color:#732916}
+.banner{float:left;clear:both;width:960px;height:350px;position:relative;overflow:hidden}
+.banner .mask{position:absolute;top:0;left:0;width:960px;height:350px;background:url(../images/bg-banner.png) no-repeat;z-index:100}
+.banner img{z-index:10}
+.main-container{margin-top:-130px}
+.main-container .content{width:920px;padding:10px 20px 0}
+.footer{background:url(../images/bg-footer.png) no-repeat;width:960px;height:143px;margin-top:50px;text-align:center;color:#707173;padding-top:60px;font-size:100%}
+.products{margin:0;padding:0}
+.products li{display:inline;float:left;background:url(../images/bg-pack.png) no-repeat;width:168px;height:205px;margin:0 20px 10px 0;padding:30px 21px 0}
+.products li h3{color:#000;font-weight:700;font-size:95%;margin-bottom:0}
+.products li .text{float:left;clear:left;margin-top:-10px;width:167px;font-size:90%;font-style:italic;color:#87888A}
+.products li .d1{float:left;clear:left;text-align:right;width:163px;margin-top:-12px}
