@@ -100,6 +100,10 @@ input[type=text],input[type=password], textarea{
 .input-contact{
     width: 300px;
 }
+.input-login{
+    width: 120px;
+}
+
 /*------------------------------------------------------------------------------
  - ESTILOS PARA TEXTAREA
  -----------------------------------------------------------------------------*/
@@ -122,6 +126,10 @@ input[type=text],input[type=password], textarea{
 /*------------------------------------------------------------------------------
  - ESTILOS PARA FORMULARIO FIELDSET
  -----------------------------------------------------------------------------*/
+fieldset{
+    padding: 10px;
+    border:1px solid #D38D2A;
+}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA AJAX LOADER

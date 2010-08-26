@@ -16,11 +16,22 @@
 </head>
 
 <body>
-    <?php if( isset($tlp_title_section) ){?>
-    <h1><?=$tlp_title_section?></h1>
-    <?php }?>
+    <div class="container">
+        <div class="span-24 last header"> 
+            <?php require('includes/header_inc.php');?>
+        </div>
+        <div class="clear span-24 last main-container"> 
+            <?php if( isset($tlp_title_section) ){?>
+            <h1 class="title-section"><?=$tlp_title_section?></h1>
+            <?php }?>
 
-    <?php require($tlp_section);?>
-
+            <div class="clear content">
+            <?php require($tlp_section);?>
+            </div>
+        </div>
+        <div class="clear span-24 last footer"> 
+            <?php require('includes/footer_inc.php');?>
+        </div>
+    </div>
 </body>
 </html>

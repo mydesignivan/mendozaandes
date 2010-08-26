@@ -30,7 +30,7 @@
     </form>
 </div>
 <div class="fright">
-    <iframe width="420" height="265" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=es&amp;msa=0&amp;msid=113252492302745252179.00048e85c2a5df93dab75&amp;ll=-32.888777,-68.849859&amp;spn=0.00955,0.017982&amp;z=15&amp;output=embed"></iframe>
+    <iframe width="420" height="265" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=es&amp;msa=0&amp;msid=113252492302745252179.00048e85c2a5df93dab75&amp;ll=-32.888777,-68.849859&amp;spn=0.00955,0.017982&amp;z=15&amp;output=embed" style="border:1px solid #D0CAC7;"></iframe>
 </div>
 
 <div class="line-dashed"></div>

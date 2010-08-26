@@ -42,7 +42,10 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',	'x+b');
 | NOMBRE DE LAS TABLAS (BASE DE DATO)
 |--------------------------------------------------------------------------
 */
-define('TBL_USERS',              'users');
+define('TBL_USERS',     'users');
+define('TBL_PRODUCTS',  'products');
+define('TBL_PRODUCTSTOGALLERY',  'products_to_gallery');
+define('TBL_GALLERY',  'gallery');
 
 /*
 |--------------------------------------------------------------------------

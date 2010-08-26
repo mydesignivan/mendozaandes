@@ -12,6 +12,17 @@ class Products_model extends Model {
      public function save(){
 
      }
+
+     public function get($where=array()){
+         $query = $this->db->get_where(TBL_PRODUCTS, $where);
+         if( $query->num_rows==0 ) return false;
+         else{
+
+             $info = $query->row_array();
+             
+
+         }
+     }
     
 }
 ?>

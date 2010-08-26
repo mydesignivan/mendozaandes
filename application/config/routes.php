@@ -46,8 +46,11 @@ $route['scaffolding_trigger'] = "";
 $route['who-whe-are'] = "index";
 $route['our-products'] = "products";
 $route['travel-tips'] = "traveltips";
+
 $route['contact-us'] = "contactus";
 $route['contact-us/send'] = "contactus/send";
+
+$route['our-products/:any'] = "products/show";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

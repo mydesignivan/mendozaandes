@@ -24,10 +24,24 @@ class Products extends Controller {
      **************************************************************************/
     public function index(){
         $this->_data = $this->dataview->set_data(array(
-            'tlp_section'   =>  'frontpage/ourproducts_view.php',
+            'tlp_section'       =>  'frontpage/ourproducts_view.php',
             'tlp_title_section' => 'Our Products'
         ));
         $this->load->view('template_frontpage_view', $this->_data);
+    }
+
+    public function show(){
+        $ref = $this->uri->segment(1);
+        if( $ref ){
+            $info = $this->products_model->get(array('reference'=>$ref));
+
+            $this->_data = $this->dataview->set_data(array(
+                'tlp_section'       => 'frontpage/product_view.php',
+                'tlp_title_section' => $info['product_name'],
+                'info'              => $info
+            ));
+            $this->load->view('template_frontpage_view', $this->_data);
+        }
     }
 
 
