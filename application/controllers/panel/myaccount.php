@@ -26,8 +26,8 @@ class Myaccount extends Controller {
      **************************************************************************/
     public function index(){
         $this->_data = $this->dataview->set_data(array(
-            'tlp_script'    =>  array('plugins_validator', 'class_account'),
-            'info'          =>  $this->users_model->get_info()
+            'tlp_script'    =>  array('plugins_validator', 'plugins_tinymce', 'class_account'),
+            'info'          =>  $this->users_model->get_info(array('username'=>$this->session->userdata('username')))
         ));
         $this->load->view('template_panel_view', $this->_data);
     }
@@ -35,18 +35,18 @@ class Myaccount extends Controller {
     public function save(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             $res = $this->users_model->save();
-            $this->session->set_flashdata('status', $res ? "ok" : "error");
+            $this->session->set_flashdata('status', $res ? "success" : "error");
             redirect('/panel/myaccount/');
         }
     }
 
     /* AJAX FUNCTIONS
      **************************************************************************/
-    public function ajax_check_pss(){
-        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+    public function ajax_check_pass(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" && $_POST['txtPassOld'] ){
             $this->load->library('encpss');
-            $res = $this->users_model->get_info($this->session->userdata('user_id'));
-            die( ($this->encpss->decode($res['password'])==$_POST['pss']) ? "ok" : "error");
+            $res = $this->users_model->get_info(array('username'=>$this->session->userdata('username')));
+            echo json_encode($this->encpss->decode($res['password'])==trim($_POST['txtPassOld']));
         }
     }
 

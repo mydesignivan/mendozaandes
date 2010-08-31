@@ -22,6 +22,8 @@ class Index extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
+        //echo $this->encpss->decode('OrmiymWohgi/n2XcZ+6351KhtLrdq+xQctiRbQ==');
+        
         if( $this->session->userdata('logged_in') ) {
             redirect('/panel/myaccount/');
         }else{
@@ -31,8 +33,8 @@ class Index extends Controller {
 
     public function login(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            $statusLogin = $this->simplelogin->login($_POST["txtUser"], $_POST["txtPss"]);
-
+            $statusLogin = $this->simplelogin->login($_POST["txtUser"], $_POST["txtPass"]);
+            
             if( $statusLogin['status']=="error" ){
                 if( $statusLogin['error']=="loginfaild" ){
                     $message = "El usuario y/o password son incorrectos.";

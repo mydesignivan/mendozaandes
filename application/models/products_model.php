@@ -13,16 +13,22 @@ class Products_model extends Model {
 
      }
 
-     public function get($where=array()){
-         $query = $this->db->get_where(TBL_PRODUCTS, $where);
+     public function get_list(){
+         $this->db->select('products_id, products_name, order');
+         $this->db->order_by('order', 'asc');
+         return $this->db->get_where(TBL_PRODUCTS);
+     }
+
+     public function get_list_productsname(){
+         $this->db->select('products_name, order');
+         $this->db->order_by('order', 'asc');
+         $query = $this->db->get_where(TBL_PRODUCTS);
          if( $query->num_rows==0 ) return false;
          else{
-
-             $info = $query->row_array();
-             
-
+             return $query->result_array();
          }
      }
+
     
 }
 ?>

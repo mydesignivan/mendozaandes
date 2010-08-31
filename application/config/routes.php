@@ -43,6 +43,9 @@
 $route['default_controller'] = "index";
 $route['scaffolding_trigger'] = "";
 
+$route['panel/login'] = "panel/index/login";
+$route['panel/logout'] = "panel/index/logout";
+
 $route['who-whe-are'] = "index";
 $route['our-products'] = "products";
 $route['travel-tips'] = "traveltips";

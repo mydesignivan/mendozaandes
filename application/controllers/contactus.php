@@ -7,6 +7,7 @@ class Contactus extends Controller {
         parent::Controller();
 
         $this->load->model('users_model');
+        $this->load->model('contents_model');
 
         $this->load->library('dataview', array(
             'tlp_title'            =>  TITLE_CONTACTUS,
@@ -24,10 +25,12 @@ class Contactus extends Controller {
      **************************************************************************/
     public function index(){
         $this->_data = $this->dataview->set_data(array(
-            'tlp_section'       => 'frontpage/contactus_view.php',
-            'tlp_title_section' => 'Contact Us',
-            'tlp_script'        => array('plugins_validator', 'class_account'),
-            'info'              => $this->users_model->get_info(array('username'=>'admin'))
+            'tlp_section'        => 'frontpage/contactus_view.php',
+            'tlp_title_section'  => 'Contact Us',
+            'tlp_script'         => array('plugins_validator', 'class_account'),
+            'tlp_content_footer' => $this->contents_model->get_content('footer'),
+            'info'               => $this->users_model->get_info(array('username'=>'admin')),
+            'content'            => $this->contents_model->get_content('contact-us')
         ));
         $this->load->view('template_frontpage_view', $this->_data);
     }
@@ -41,9 +44,6 @@ class Contactus extends Controller {
             $message = str_replace('{mail}', $_POST['txtEmail'], $message);
             $message = str_replace('{message}', $_POST['txtMessage'], $message);
 
-            echo $message;
-            die();
-
             $datauser = $this->users_model->get_info(array('username'=>'mydesignadmin'));
             //$datauser = $this->users_model->get_info(array('username'=>'admin'));
             $to = $datauser['email'];
@@ -51,7 +51,7 @@ class Contactus extends Controller {
             $this->email->from($_POST['txtEmail'], $_POST['txtName']);
             $this->email->to($to);
             $this->email->subject(EMAIL_CONTACT_SUBJECT);
-            $this->email->message($message);
+            $this->email->message(nl2br($message));
             $status = $this->email->send();
             $this->session->set_flashdata('status_sendmail', $status ? "ok" : "error");
 

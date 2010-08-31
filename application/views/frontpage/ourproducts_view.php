@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
+<?=$content?>
+
 <ul class="products">
     <li>
         <h3>Personalized Wine Tour</h3>

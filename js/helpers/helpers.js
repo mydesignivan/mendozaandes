@@ -109,3 +109,23 @@ function showhide(el, sel){
     if( $(el)[0].checked ) $(sel).fadeIn('slow');
     else $(sel).fadeOut('slow');
 }
+
+function MessageShowHide(parent, status, t){
+    if( status && status!='' ){
+        if( !t ) t=5000;
+        if( status!='' ){
+            var div = $(parent).find(status=="success" ? "div.success" : "div.error");
+            if( div.is(':visible') ){
+                setTimeout(function(){
+                    div.slideUp('slow');
+                }, t);
+            }else{
+                div.slideDown('slow', function(){
+                    setTimeout(function(){
+                        div.slideUp('slow');
+                    }, t);
+                });
+            }
+        }
+    }
+}

@@ -10,7 +10,18 @@ class Users_model extends Model {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
      public function save(){
+        $data = array(
+            'email'   => $_POST['txtEmail'],
+            'codegm'  => $_POST['txtCodeGM']
+        );
 
+        if( !empty($_POST['txtPassNew']) ){
+            $this->load->library('encpss');
+            $data['password'] = $this->encpss->encode($_POST['txtPassNew']);
+        }
+
+        $this->db->where(array('username'=>$this->session->userdata('username')));
+        return $this->db->update(TBL_USERS, $data);
      }
 
      public function get_info($where=array()){
@@ -20,6 +31,6 @@ class Users_model extends Model {
             return $row;
         }else return false;
      }
-    
+
 }
 ?>

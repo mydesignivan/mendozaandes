@@ -26,26 +26,26 @@ class Simplelogin{
         }
 
         //Check if already logged in
-        if( $this->CI->session->userdata('email') == $user ) {
+        if( $this->CI->session->userdata('username') == $user ) {
             //User is already logged in.
             return array('status'=>'error', 'error'=>'loginfaild');
         }
 
 
         //Check against user table
-        $query = $this->CI->db->get_where($this->user_table, array('email'=>$user));
+        $query = $this->CI->db->get_where($this->user_table, array('username'=>$user));
 
         if( $query->num_rows > 0 ) {
             $row = $query->row_array();
             //Check against password
-
+            
             if( $password != $this->CI->encpss->decode($row['password']) ) {
                 return array('status'=>'error', 'error'=>'loginfaild');
             }
 
-            if( $row['level']==0 && $row['active']==0 ){
+            /*if( $row['level']==0 && $row['active']==0 ){
                 return array('status'=>'error', 'error'=>'userinactive');
-            }
+            }*/
 
             //Destroy old session
             $this->CI->session->sess_destroy();
@@ -55,6 +55,8 @@ class Simplelogin{
 
             //Remove the password field
             unset($row['password']);
+            unset($row['codegm']);
+            unset($row['content']);
 
             //Set session data
             $this->CI->session->set_userdata($row);

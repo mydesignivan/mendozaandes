@@ -42,10 +42,11 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',	'x+b');
 | NOMBRE DE LAS TABLAS (BASE DE DATO)
 |--------------------------------------------------------------------------
 */
-define('TBL_USERS',     'users');
-define('TBL_PRODUCTS',  'products');
+define('TBL_USERS',              'users');
+define('TBL_PRODUCTS',           'products');
 define('TBL_PRODUCTSTOGALLERY',  'products_to_gallery');
-define('TBL_GALLERY',  'gallery');
+define('TBL_GALLERY',            'gallery');
+define('TBL_CONTENTS',           'contents');
 
 /*
 |--------------------------------------------------------------------------
@@ -77,10 +78,14 @@ define('UPLOAD_FILETYPE', 'gif|jpg|png');
 define('UPLOAD_MAXSIZE', 2048); //Expresado en Kylobytes
 
 define('UPLOAD_PATH_GALLERY', './uploads/gallery/');
-define('UPLOAD_PATH_CV', './uploads/cv/');
+define('UPLOAD_PATH_PRODUCTS', './uploads/products/');
 
-define('IMAGE_CV_THUMB_WIDTH', 200);
-define('IMAGE_CV_THUMB_HEIGHT', 250);
+define('IMAGE_THUMB_GALLERY_WIDTH', 153);
+define('IMAGE_THUMB_GALLERY_HEIGHT', 103);
+define('IMAGE_FULL_GALLERY_WIDTH', 800);
+define('IMAGE_FULL_GALLERY_HEIGHT', 600);
+define('IMAGE_THUMB_PRODUCTS_WIDTH', 168);
+define('IMAGE_THUMB_PRODUCTS_HEIGHT', 68);
 
 /*
 |--------------------------------------------------------------------------

@@ -41,30 +41,38 @@ h1.title-section{
     margin: 15px 0 15px 0;
 }
 
+.thumbframe1{
+    padding: 4px;
+    margin: 2px;
+    border: 2px solid #A5A5A5;
+}
+
 /*------------------------------------------------------------------------------
  - ESTILO PARA MENSAJES DEL VALIDADOR
  -----------------------------------------------------------------------------*/
 .valid-success{
-    float: right !important;
-    background: transparent url(../images/icon_success.png) no-repeat !important;
+    background: transparent url(../images/icon_success.png) no-repeat left !important;
     width: 16px;
     height: 16px;
+    padding: 0 0 0 18px !important;
+    color: #264409 !important;
     border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+    font-size: 100% !important;
 }
 .valid-error{
     background: #FBE3E4;
     color: #8a1f11;
     border: 2px solid #FBC2C4;
     padding: 5px;
-    margin-bottom: 1em;
-    font-weight: normal;
+    margin-left: 5px;
     font-size: 90%;
-    float: right;
-    clear: both;
-    margin-top: 5px;
+    font-weight: normal;
+    min-width: 150px;
+    max-width: 330px;
+    text-align: left;
 }
+.valid-highlight{border-style: dashed !important;}
+.valid-unhighlight{border-style: solid !important;}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LINK
@@ -75,15 +83,29 @@ a.link-moreinfo{
     font-style: italic;
     font-weight: bold;
 }
+a.link-title{
+    font-weight: bold;
+    font-size: 115%;
+}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LABEL
  -----------------------------------------------------------------------------*/
-.label1{
-    width: 100px;
+.label{
     float: left;
     text-align: right;
     margin-right: 10px;
+}
+.label1{
+    width: 100px;
+}
+.label2{
+    width: 150px;
+}
+.label-leyend{
+    color: #000;
+    font-size: 90%;
+    font-weight: normal;
 }
 
 /*------------------------------------------------------------------------------
@@ -101,7 +123,10 @@ input[type=text],input[type=password], textarea{
     width: 300px;
 }
 .input-login{
-    width: 120px;
+    width: 150px;
+}
+.input-form{
+    width: 300px;
 }
 
 /*------------------------------------------------------------------------------
@@ -110,6 +135,10 @@ input[type=text],input[type=password], textarea{
 .textarea-contact{
     width: 300px;
     height: 150px;
+}
+.textarea-info{
+    width: 400px;
+    height: 130px;
 }
 
 /*------------------------------------------------------------------------------
@@ -130,6 +159,35 @@ fieldset{
     padding: 10px;
     border:1px solid #D38D2A;
 }
+    fieldset legend{
+        font-size: 100%;
+        padding: 0 5px 0 5px;
+    }
+
+fieldset.gallery-panel{
+    float:left;
+    width: 500px;
+    height: 150px;
+    overflow: auto;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+    fieldset.gallery-panel ul{
+        margin:0;
+        padding:0;
+    }
+        fieldset.gallery-panel ul li{
+            list-style-type: none;
+            display: inline;
+            float:left;
+            margin: 0 8px 8px 0;
+            padding:5px;
+            background-color: #EEF3F6;
+            border: 1px solid #003366;
+            /*-moz-border-radius: 2px;
+            -webkit-border-radius: 2px;*/
+        }
+
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA AJAX LOADER
@@ -285,3 +343,55 @@ fieldset{
             width: 163px;
             margin-top: -12px;
         }
+
+/*------------------------------------------------------------------------------
+ - ESTILO PARA EL LOGIN
+ -----------------------------------------------------------------------------*/
+.contlogin{
+    background: url(../images/bg-login.png) no-repeat;
+    width: 306px;
+    height: 112px;
+    margin: 10px auto;
+    padding: 10px 5px 5px 5px;
+    /*border:1px solid red;*/
+}
+    .contlogin .error{
+        width: 260px;
+        margin: 5px auto;
+    }
+
+/*------------------------------------------------------------------------------
+ - ESTILO PARA TABLAS
+ -----------------------------------------------------------------------------*/
+table{
+    background-color: #E9D4B0;
+    width: 100%;
+}
+table td{
+    /*border: 1px solid #C7A773;*/
+    border: 1px solid #D9BA83;
+}
+table tbody .row-even{
+
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILO PARA TABLA "CONTENT"
+ -----------------------------------------------------------------------------*/
+.table-contents .cell1{
+    width: 800px;
+}
+.table-contents .cell2{
+    text-align: center;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILO PARA TABLA "PRODUCTS"
+ -----------------------------------------------------------------------------*/
+.table-products .cell1{
+    width: 400px;
+}
+.table-products .cell2{
+    width: 150px;
+    text-align: center;
+}

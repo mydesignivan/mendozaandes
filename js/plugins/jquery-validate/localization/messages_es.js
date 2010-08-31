@@ -24,11 +24,8 @@ jQuery.extend(jQuery.validator.messages, {
 
 jQuery.validator.setDefaults({
     messages : {
-        txtEmail: {
-            remote : 'La direcci&oacute;n de email ya existe.'
-        },
-        chkPolitic:{
-            required : 'Debe aceptar las pol&iacute;ticas de Privacidad para poder continuar.'
+        txtPassOld:{
+            remote : 'La contrase&ntilde;a es incorrecta.'
         },
         txtCaptcha:{
             remote : 'El c&oacute;digo ingresado no es v&aacute;lido.'

@@ -15,10 +15,11 @@
 <div class="clear span-24 last"> 
     <div class="menu">
         <ul>
-            <li <?php if( $page=="panel") echo 'class="current"';?>><a href="<?=$this->config->item('base_url');?>" target="_blank">Home</a></li>
-            <li <?php if( $page=="my-account" ) echo 'class="current"';?>><a href="<?=site_url('/my-account/')?>">My Account</a></li>
-            <li <?php if( $page=="products" ) echo 'class="current"';?>><a href="<?=site_url('/products/')?>">Products</a></li>
-            <li class="no-line <?php if( $page=="pages" ) echo 'current';?>"><a href="<?=site_url('/pages/')?>">Pages</a></li>
+            <li <?php if( $page=="") echo 'class="current"';?>><a href="<?=$this->config->item('base_url');?>" target="_blank">Home</a></li>
+            <li <?php if( $page=="myaccount" ) echo 'class="current"';?>><a href="<?=site_url('/panel/myaccount/')?>">Mi Cuenta</a></li>
+            <li <?php if( $page=="products" ) echo 'class="current"';?>><a href="<?=site_url('/panel/products/')?>">Productos</a></li>
+            <li class="<?php if( $page=="contents" ) echo 'current';?>"><a href="<?=site_url('/panel/contents/')?>">P&aacute;ginas</a></li>
+            <li class="no-line"><a href="<?=site_url('/panel/logout/')?>">Salir</a></li>
         </ul>
     </div>
 </div>
@@ -40,6 +41,7 @@
 
 <?php }?>
 
+<?php if( !$this->session->userdata('logged_in') ) {?>
 <div class="banner">
     <div class="mask"></div>
     <div id="slider">
@@ -48,4 +50,5 @@
         <img src="images/banner/we-can-do-it.jpg" alt="We can do it" width="960" height="350" />
     </div>
 </div>
+<?php }?>
 <div class="header-bottom"></div>
