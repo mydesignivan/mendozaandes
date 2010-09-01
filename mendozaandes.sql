@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 01-09-2010 a las 04:25:55
--- Versión del servidor: 5.1.41
--- Versión de PHP: 5.3.1
+-- Tiempo de generación: 01-09-2010 a las 19:30:10
+-- Versión del servidor: 5.1.37
+-- Versión de PHP: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('edb16fa3c0bff29a8836256e1bbae995', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.2.8', 1283307064, 'a:6:{s:8:"users_id";s:1:"2";s:8:"username";s:5:"admin";s:5:"email";s:20:"ivan@mydesign.com.ar";s:10:"date_added";s:19:"2010-08-23 19:07:45";s:13:"last_modified";s:19:"2010-08-23 19:07:54";s:9:"logged_in";s:1:"1";}');
+('69ab393e22692918492e61ebf31a2849', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1283361856, 'a:6:{s:8:"users_id";s:1:"2";s:8:"username";s:5:"admin";s:5:"email";s:20:"ivan@mydesign.com.ar";s:10:"date_added";s:19:"2010-08-23 19:07:45";s:13:"last_modified";s:19:"2010-08-23 19:07:54";s:9:"logged_in";s:1:"1";}');
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `gallery` (
   `height` tinyint(4) NOT NULL,
   `order` int(11) NOT NULL,
   PRIMARY KEY (`gallery_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcar la base de datos para la tabla `gallery`
@@ -105,13 +105,16 @@ CREATE TABLE IF NOT EXISTS `products` (
   `products_id` int(11) NOT NULL AUTO_INCREMENT,
   `products_name` varchar(255) NOT NULL,
   `reference` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `image_name` varchar(255) NOT NULL,
+  `image_width` tinyint(4) NOT NULL,
+  `image_height` tinyint(4) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `content` longtext NOT NULL,
   `order` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`products_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcar la base de datos para la tabla `products`

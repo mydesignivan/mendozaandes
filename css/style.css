@@ -142,6 +142,14 @@ input[type=text],input[type=password], textarea{
 }
 
 /*------------------------------------------------------------------------------
+ - ESTILOS PARA SELECT
+ -----------------------------------------------------------------------------*/
+select{
+    margin: 2px 0 2px 0;
+    padding: 2px;
+}
+
+/*------------------------------------------------------------------------------
  - ESTILOS PARA BUTTON
  -----------------------------------------------------------------------------*/
 .button{
@@ -167,11 +175,19 @@ fieldset{
 fieldset.gallery-panel{
     float:left;
     width: 500px;
-    height: 150px;
-    overflow: auto;
+    height: 200px;
     padding-top: 10px;
     margin-bottom: 10px;
 }
+    fieldset.gallery-panel .cont{
+        float: left;
+        width: 500px;
+        height: 200px;
+        position: relative;
+        overflow: auto;
+        /*border: 1px solid red;*/
+    }
+
     fieldset.gallery-panel ul{
         margin:0;
         padding:0;
@@ -187,6 +203,9 @@ fieldset.gallery-panel{
             /*-moz-border-radius: 2px;
             -webkit-border-radius: 2px;*/
         }
+            fieldset.gallery-panel ul li .jq-image{
+                margin-bottom: 5px;
+            }
 
 
 /*------------------------------------------------------------------------------
@@ -366,6 +385,9 @@ fieldset.gallery-panel{
 table{
     background-color: #E9D4B0;
     width: 100%;
+}
+table thead td{
+    font-weight: bold;
 }
 table td{
     /*border: 1px solid #C7A773;*/

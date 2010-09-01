@@ -108,6 +108,7 @@ var PictureGallery = new (function(){
         }
 
         if( data['status']=="success" ){
+            $(params.sel_msgerror).hide();
             var ul = $(params.sel_gallery);
             var li = ul.find('li:first');
 
@@ -116,7 +117,11 @@ var PictureGallery = new (function(){
             var output = data['output'][0];
 
             li.find('a.jq-image').attr('href', output['href_image_full']);
-            li.find('img:first').attr('src', output['href_image_thumb']);
+            var img = li.find('img:first');
+                img.attr('src', output['href_image_thumb'])
+                   .attr('width', output['thumb_width'])
+                   .attr('height', output['thumb_height']);
+
             var audata = {width : output['thumb_width'], height : output['thumb_height']};
 
             if( !ul.is(':visible') ){

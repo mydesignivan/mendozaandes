@@ -2,32 +2,27 @@ var Products = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(){
-        var o = $.extend({}, jQueryValidatorOptDef, {
-            rules : {
-                txtName    : 'required',
-                txtImage   : 'required'
-            },
-            submitHandler : function(form){
-                if( tinyMCE.get('txtContent').getContent().length==0 ){
-                    $('#msgbox1').show();
-                }else{
-                    _Loader.show('#form1');
-                    
-                    var data={};
-                    data.gallery={};
-                    data.gallery.images_new = PictureGallery.get_images_new();
-                    if( $('#products_id').val() ) {
-                        data.gallery.images_del = PictureGallery.get_images_del();
-                        data.gallery.images_order = PictureGallery.get_orders();
-                    }
-                    data.image_thumb = _ajaxupload_output;
+    this.initializer = function(mode_edit){
 
-                    $('#json').val(JSON.encode(data));
-
-                    form.submit();
+        // Configura el Validador
+        var rules={};
+        rules.txtName = {
+            required : true,
+            remote : {
+                url  : baseURI+'panel/products/ajax_check_exists/',
+                type : "post",
+                complete : function(){
+                    $('#txtName').focus();
                 }
-            },
+            }
+        };
+        rules.txtDescription = 'required';
+
+        if( !mode_edit ) rules.txtImage = 'required';
+
+        var o = $.extend({}, jQueryValidatorOptDef, {
+            rules : rules,
+            submitHandler : _on_submit,
             invalidHandler : function(){
                 _Loader.hide('#form1');
             }
@@ -71,7 +66,6 @@ var Products = new (function(){
 
             var i = $('input.ajaxupload-input');
             i[0].disabled = false;
-            i.val('');
             $('#ajaxupload-load').hide();
 
             var result;
@@ -127,7 +121,7 @@ var Products = new (function(){
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
-     var _ajaxupload_output;
+     var _ajaxupload_output=false;
 
     /* PRIVATE METHODS
      **************************************************************************/
@@ -143,5 +137,33 @@ var Products = new (function(){
              f.find('.jq-submit')[0].disabled=false;
          }
      };
+
+     var _on_submit = function(form){
+        if( $('#gallery-image li').length==0 || $('#gallery-image').is(':hidden') ){
+            $('#pg-msgerror').html('Debe ingresar al menos una im&aacute;gen').show();
+            return false;
+        }
+
+        if( tinyMCE.get('txtContent').getContent().length==0 ){
+            $('#msgbox1').show();
+            return false;
+        }
+  
+        _Loader.show('#form1');
+
+        var data={};
+        data.gallery={};
+        data.gallery.images_new = PictureGallery.get_images_new();
+        if( $('#products_id').val() ) {
+            data.gallery.images_del = PictureGallery.get_images_del();
+            data.gallery.images_order = PictureGallery.get_orders();
+        }
+        data.image_thumb = _ajaxupload_output;
+
+        $('#json').val(JSON.encode(data));
+
+        form.submit();
+        return true;
+     }
 
 })();

@@ -25,7 +25,7 @@ class Products extends Controller {
     public function index(){
         $this->_data = $this->dataview->set_data(array(
             'tlp_title_section'  => "Productos",
-            'tlp_script'         =>  array('class_products_list'),
+            'tlp_script'         =>  array('plugins_jqui_sortable', 'class_products_list'),
             'tlp_section'        =>  'panel/products_list_view.php',
             'listProducts'       =>  $this->products_model->get_list()
         ));
@@ -33,7 +33,9 @@ class Products extends Controller {
     }
 
     public function form(){
-        $id = $this->uri->segment(3);
+        /*echo preg_replace('/_.*$/', '', '13_filename.jpg');
+        die();*/
+        $id = $this->uri->segment(4);
         $this->load->helper('form');
 
         $data = array(
@@ -44,7 +46,7 @@ class Products extends Controller {
 
         if( is_numeric($id) ){ // Edit
             $data['tlp_title_section'] = "Editar Producto";
-            $data['info'] = $this->products_model->get_info(array('products_id'=>$id));
+            $data['info'] = $this->products_model->get_info($id);
 
         }else{  // New
             $data['tlp_title_section'] = "Nuevo Producto";
@@ -66,13 +68,30 @@ class Products extends Controller {
         }
     }
 
+    public function edit(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $res = $this->products_model->edit();
+            $this->session->set_flashdata('status', $res ? "success" : "error");
+            redirect('/panel/products/form/'.$_POST['products_id']);
+        }
+    }
+
+    public function delete(){
+        if( is_numeric($this->uri->segment(4)) ){
+            if( !$this->products_model->delete($this->uri->segment(4)) ){
+                $this->session->set_flashdata('status', 'error');
+                $this->session->set_flashdata('message', 'No se pudo eliminar el producto.');
+            }
+            redirect('/panel/products/');
+        }
+    }
+
+
     /* AJAX FUNCTIONS
      **************************************************************************/
-    public function ajax_check_pass(){
-        if( $_SERVER['REQUEST_METHOD']=="POST" && $_POST['txtPassOld'] ){
-            $this->load->library('encpss');
-            $res = $this->users_model->get_info(array('username'=>$this->session->userdata('username')));
-            echo json_encode($this->encpss->decode($res['password'])==trim($_POST['txtPassOld']));
+    public function ajax_check_exists(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" && $_POST['txtName'] ){
+            echo json_encode(!$this->products_model->check_exists($_POST['txtName']));
         }
     }
 
@@ -112,6 +131,7 @@ class Products extends Controller {
             );
             $this->superupload->initialize($config);
             echo json_encode($this->superupload->upload('txtUploadFile'));
+            die();
         }
     }
     public function ajax_upload_delete(){
