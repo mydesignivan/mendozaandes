@@ -22,7 +22,7 @@ class Index extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
-        //echo $this->encpss->decode('OrmiymWohgi/n2XcZ+6351KhtLrdq+xQctiRbQ==');
+        //echo $this->encpss->decode('4MEt6GePFtXIXW1EHlEJ3Tecv47sl5v9DqXIJg==');
         
         if( $this->session->userdata('logged_in') ) {
             redirect('/panel/myaccount/');

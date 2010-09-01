@@ -11,7 +11,7 @@ class Products extends Controller {
         $this->load->model("products_model");
 
         $this->load->library('dataview', array(
-            'tlp_title'          =>  TITLE_INDEX
+            'tlp_title'  =>  TITLE_INDEX
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -38,7 +38,7 @@ class Products extends Controller {
 
         $data = array(
             'tlp_section' =>  'panel/products_form_view.php',
-            'tlp_script'  =>  array('plugins_validator', 'plugins_tinymce', 'plugins_fancybox', 'plugins_jqui_sortable', 'class_products_form'),
+            'tlp_script'  =>  array('plugins_validator', 'plugins_tinymce', 'plugins_fancybox', 'plugins_jqui_sortable', 'helpers_json', 'class_products_form'),
             'listProductsName' => $this->products_model->get_list_productsname()
         );
 
@@ -58,8 +58,10 @@ class Products extends Controller {
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
 
             $res = $this->products_model->create();
-            $this->session->set_flashdata('status', $res ? "success" : "error");
-            redirect('/panel/products/');
+            if( !$res ){
+                $this->session->set_flashdata('status', "error");
+                redirect('/panel/products/form/');
+            }else redirect('/panel/products/');
                 
         }
     }

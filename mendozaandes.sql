@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 31-08-2010 a las 21:53:05
--- Versión del servidor: 5.1.37
--- Versión de PHP: 5.3.0
+-- Tiempo de generación: 01-09-2010 a las 04:25:55
+-- Versión del servidor: 5.1.41
+-- Versión de PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('4d8da0078a4aff3dd500d15b78c01fe1', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1283283361, 'a:6:{s:8:"users_id";s:1:"2";s:8:"username";s:5:"admin";s:5:"email";s:20:"ivan@mydesign.com.ar";s:10:"date_added";s:19:"2010-08-23 19:07:45";s:13:"last_modified";s:19:"2010-08-23 19:07:54";s:9:"logged_in";s:1:"1";}');
+('edb16fa3c0bff29a8836256e1bbae995', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.2.8', 1283307064, 'a:6:{s:8:"users_id";s:1:"2";s:8:"username";s:5:"admin";s:5:"email";s:20:"ivan@mydesign.com.ar";s:10:"date_added";s:19:"2010-08-23 19:07:45";s:13:"last_modified";s:19:"2010-08-23 19:07:54";s:9:"logged_in";s:1:"1";}');
 
 -- --------------------------------------------------------
 
@@ -80,10 +80,12 @@ INSERT INTO `contents` (`content_id`, `reference`, `title`, `content`, `date_add
 DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE IF NOT EXISTS `gallery` (
   `gallery_id` int(11) NOT NULL AUTO_INCREMENT,
+  `products_id` int(11) NOT NULL,
   `thumb` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `width` tinyint(4) NOT NULL,
   `height` tinyint(4) NOT NULL,
+  `order` int(11) NOT NULL,
   PRIMARY KEY (`gallery_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -113,23 +115,6 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 --
 -- Volcar la base de datos para la tabla `products`
---
-
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `products_to_gallery`
---
-
-DROP TABLE IF EXISTS `products_to_gallery`;
-CREATE TABLE IF NOT EXISTS `products_to_gallery` (
-  `products_id` int(11) NOT NULL,
-  `gallery_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcar la base de datos para la tabla `products_to_gallery`
 --
 
 

@@ -38,7 +38,7 @@ class Simplelogin{
         if( $query->num_rows > 0 ) {
             $row = $query->row_array();
             //Check against password
-            
+
             if( $password != $this->CI->encpss->decode($row['password']) ) {
                 return array('status'=>'error', 'error'=>'loginfaild');
             }

@@ -13,6 +13,18 @@ var Products = new (function(){
                     $('#msgbox1').show();
                 }else{
                     _Loader.show('#form1');
+                    
+                    var data={};
+                    data.gallery={};
+                    data.gallery.images_new = PictureGallery.get_images_new();
+                    if( $('#products_id').val() ) {
+                        data.gallery.images_del = PictureGallery.get_images_del();
+                        data.gallery.images_order = PictureGallery.get_orders();
+                    }
+                    data.image_thumb = _ajaxupload_output;
+
+                    $('#json').val(JSON.encode(data));
+
                     form.submit();
                 }
             },

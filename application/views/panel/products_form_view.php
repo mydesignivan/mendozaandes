@@ -92,6 +92,9 @@
     <div class="trow align-center">
         <img src="images/ajax-loader3.gif" alt="Sending ..." width="32" height="32" style="position: relative; top:10px; right: 10px;" class="hide jq-loading" /><button type="submit" name="btnSubmit" class="jq-submit">Guardar</button>
     </div>
+
+    <input type="hidden" name="products_id" id="products_id" value="<?=@$info['products_id']?>" />
+    <input type="hidden" name="json" id="json" />
 </form>
 
 <form id="ajaxupload-form" action="<?=site_url('/panel/products/ajax_upload_products')?>" method="post" enctype="multipart/form-data" target="ifr">
