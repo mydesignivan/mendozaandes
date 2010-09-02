@@ -11,12 +11,6 @@ class Products_model extends Model {
      **************************************************************************/
      public function create(){
 
-         /*print_array($_POST);
-
-         echo "<br><br>";
-
-         print_array(json_decode($_POST['json']), true);*/
-
          $order = @$_POST['cboOrder'];
          $json = json_decode($_POST['json']);
          $gallery = $json->gallery;
@@ -54,18 +48,11 @@ class Products_model extends Model {
      }
 
      public function edit(){
-
-         /*print_array($_POST);
-
-         echo "<br><br>";
-
-         print_array(json_decode($_POST['json']), true);*/
-
          $order = @$_POST['cboOrder'];
          $json = json_decode($_POST['json']);
          $gallery = $json->gallery;
          $reference = normalize($_POST['txtName']);
-         $id = $_POST['products_id'];
+         $products_id = $_POST['products_id'];
 
          $data = array(
             'products_name'  => $_POST['txtName'],
@@ -81,36 +68,62 @@ class Products_model extends Model {
             $data['image_height'] = $json->image_thumb->thumb_height;
          }
 
+         // Esto es para cambiar el orden
          if( $_POST['cboOrder']!=0 ){
-            //$data['order'] = $_POST['cboOrder'];
+             $this->db->select('products_id');
+             $row = $this->db->get_where(TBL_PRODUCTS, array('order'=>$_POST['cboOrder']))->row_array();
+             $id = $row['products_id'];
+
+             if( $_POST['products_id']<$id ){
+                 $between = 'BETWEEN '.$_POST['products_id'].' AND '.$id;
+             }else{
+                 $between = 'BETWEEN '.$id.' AND '.$_POST['products_id'];
+             }
+             $arr = $this->db->query('SELECT products_id FROM '.TBL_PRODUCTS.' WHERE products_id '.$between)->result_array();
+
+             print_array($arr);
+             echo "<br><br>";
+
+            for( $n=0; $n<=count($arr)-1; $n++ ){
+                if( $arr[$n]['products_id']==$id ){
+                    $key1 = $n;
+                }
+                if( $arr[$n]['products_id']==$_POST['products_id'] ){
+                    $val = $arr[$n];
+                    $key2 = $n+1;
+                }
+            }
+
+            array_insert($arr, $val, $key1);
+            //unset($arr[$key2]);
+             print_array($arr, true);
+            
+             $n=$_POST['cboOrder'];
+             foreach( $arr as $row ){
+                 $this->db->where('products_id', $row['products_id']);
+                 $this->db->update(TBL_PRODUCTS, array('order'=>$n));
+                 $n++;
+             }
          }
+         //-----
 
 
          $this->db->trans_start(); // INICIO TRANSACCION
 
-         $this->db->where('products_id', $id);
+         $this->db->where('products_id', $products_id);
          if( $this->db->update(TBL_PRODUCTS, $data) ){
 
             //Copia la imagen del producto
             if( $json->image_thumb ){
                 @unlink($_POST['image_old']);
-                if( !@copy($json->image_thumb->href_image_full, UPLOAD_PATH_PRODUCTS.$json->image_thumb->filename_image) ) {
-                    die("pase1");
-                    return false;
-                }
+                if( !@copy($json->image_thumb->href_image_full, UPLOAD_PATH_PRODUCTS.$json->image_thumb->filename_image) ) return false;
             }
 
             //Copia las nuevas imagenes de la galeria
             if( count($gallery->images_new)>0 ){
-                if( !$this->_copy_images($gallery->images_new, $id) ) {
-                    die("pase2");
-                    return false;
-                }
+                if( !$this->_copy_images($gallery->images_new, $products_id) ) return false;
             }
-         }else{
-             die("pase3");
-             return false;
-         }
+         }else return false;
 
          $this->_delete_images_tmp(); //Elimina todas las imagenes temporales
 
@@ -163,8 +176,9 @@ class Products_model extends Model {
          return $info;
      }
 
-     public function get_list_productsname(){
+     public function get_list_productsname($id){
          $this->db->select('products_name, order');
+         if( is_numeric($id) ) $this->db->where('products_id !=', $id);
          $this->db->order_by('order', 'asc');
          $query = $this->db->get_where(TBL_PRODUCTS);
          if( $query->num_rows==0 ) return false;
@@ -173,10 +187,28 @@ class Products_model extends Model {
          }
      }
 
+    public function order(){
+        $initorder = $_POST['initorder'];
+        $rows = json_decode($_POST['rows']);
+
+        $res = $this->db->query('SELECT `order` FROM '.TBL_PRODUCTS.' WHERE products_id='.$initorder)->row_array();
+        $order = $res['order'];
+
+        //print_array($rows, true);
+        foreach( $rows as $row ){
+            $id = substr($row, 2);
+            $this->db->where('products_id', $id);
+            if( !$this->db->update(TBL_PRODUCTS, array('order' => $order)) ) return false;
+            $order++;
+        }
+        
+        return true;
+    }
+
     /* PUBLIC FUNCTIONS (LLAMADAS POR AJAX)
      **************************************************************************/
-     public function check_exists($name, $id=null){
-         $where = is_null($id) ? array('products_name'=>$name) : array('id<>'=>$id, 'products_name'=>$name);
+     public function check_exists($name, $id){
+         $where = !is_numeric($id) ? array('products_name'=>$name) : array('products_id !='=>$id, 'products_name'=>$name);
          return $this->db->get_where(TBL_PRODUCTS, $where)->num_rows>0;
      }
 
@@ -221,10 +253,7 @@ class Products_model extends Model {
 
                 if( !is_numeric($_POST['products_id']) ) $data['order'] = $n;
                 if( !$this->db->insert(TBL_GALLERY, $data) ) return false;
-            }else {
-                die("pase10");
-                return false;
-            }
+            }else return false;
         }
 
         return true;

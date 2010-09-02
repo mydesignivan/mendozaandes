@@ -11,6 +11,7 @@ var Products = new (function(){
             remote : {
                 url  : baseURI+'panel/products/ajax_check_exists/',
                 type : "post",
+                data : {txtName:$('#txtName').val(), id:$('#products_id').val()},
                 complete : function(){
                     $('#txtName').focus();
                 }

@@ -393,8 +393,8 @@ table td{
     /*border: 1px solid #C7A773;*/
     border: 1px solid #D9BA83;
 }
-table tbody .row-even{
-
+table tbody tr.row-even{
+    background-color: #F7F0E3;
 }
 
 /*------------------------------------------------------------------------------
@@ -411,9 +411,17 @@ table tbody .row-even{
  - ESTILO PARA TABLA "PRODUCTS"
  -----------------------------------------------------------------------------*/
 .table-products .cell1{
-    width: 400px;
+    width: 500px;
 }
 .table-products .cell2{
-    width: 150px;
+    width: 100px;
+    text-align: center;
+}
+.table-products .cell3{
+    width: 100px;
+    text-align: center;
+}
+.table-products .cell4{
+    width: 100px;
     text-align: center;
 }

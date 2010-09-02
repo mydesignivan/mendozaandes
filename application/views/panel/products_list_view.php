@@ -23,7 +23,7 @@
             <td class="cell4">Eliminar</td>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="sortable">
 <?php
 $n=0;
 foreach( $listProducts->result_array() as $row ) {
@@ -31,7 +31,7 @@ foreach( $listProducts->result_array() as $row ) {
     $url = site_url('/panel/products/form/'.$row['products_id']);
     $class = $n%2 ? 'row-even' : '';
 ?>
-        <tr class="<?=$class?>">
+        <tr id="tr<?=$row['products_id']?>" class="<?=$class?>">
             <td class="cell1"><a href="<?=$url?>"><?=$row['products_name']?></a></td>
             <td class="cell2"><a href="javascript:void(0)" class="handle"><img src="images/icon_arrow_move.png" alt="" width="16" alt="16" /></a></td>
             <td class="cell3"><a href="<?=$url?>"><img src="images/icon_edit.png" alt="" width="16" alt="16" /><span>Modificar</span></a></td>

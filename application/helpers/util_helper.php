@@ -111,6 +111,38 @@ function arr_search ( $array, $expression ) {
     return $result;
 }
 
+function array_insert(&$array, $elemento, $pos) {
+
+    if($pos < 0) {
+        return;
+    }
+
+    ## si la posicion es mayor que el tamaño de la lista
+    ## el nodo se inserta al final
+    if($pos>=count($array) ) {
+        array_push($array,$elemento);
+        return;
+    }
+
+    $listaaux=array(); # array auxiliar
+        ## buscamos la posicion en el array, para ello las posiciones anteriores
+        ## las guardamos en el array auxiliar
+    for($cont=0;$cont<$pos;$cont++) {
+        $listaaux[] = array_shift($array);
+    }
+
+        ## ahora se inserta el elemento al principio del array original
+    array_unshift($array,$elemento);
+
+        ## ahora recorremos el array auxiliar desde el final y vamos insertando
+        ## sus elementos al principio del array original
+    if(count($listaaux)>0) {
+        for($i=count($listaaux)-1;$i>=0;$i--) {
+            array_unshift($array,$listaaux[$i]);
+        }
+    }
+}
+
 function array_implode($parent, $arr){
     $ret="";
     foreach( $arr as $key=>$val ){

@@ -25,7 +25,7 @@ class Products extends Controller {
     public function index(){
         $this->_data = $this->dataview->set_data(array(
             'tlp_title_section'  => "Productos",
-            'tlp_script'         =>  array('plugins_jqui_sortable', 'class_products_list'),
+            'tlp_script'         =>  array('plugins_jqui_sortable', 'helpers_json', 'class_products_list'),
             'tlp_section'        =>  'panel/products_list_view.php',
             'listProducts'       =>  $this->products_model->get_list()
         ));
@@ -41,7 +41,7 @@ class Products extends Controller {
         $data = array(
             'tlp_section' =>  'panel/products_form_view.php',
             'tlp_script'  =>  array('plugins_validator', 'plugins_tinymce', 'plugins_fancybox', 'plugins_jqui_sortable', 'helpers_json', 'class_products_form'),
-            'listProductsName' => $this->products_model->get_list_productsname()
+            'listProductsName' => $this->products_model->get_list_productsname($id)
         );
 
         if( is_numeric($id) ){ // Edit
@@ -91,8 +91,12 @@ class Products extends Controller {
      **************************************************************************/
     public function ajax_check_exists(){
         if( $_SERVER['REQUEST_METHOD']=="POST" && $_POST['txtName'] ){
-            echo json_encode(!$this->products_model->check_exists($_POST['txtName']));
+            echo json_encode(!$this->products_model->check_exists($_POST['txtName'], $_POST['id']));
         }
+    }
+
+    public function ajax_order(){
+        die($this->products_model->order() ? "success" : "error");
     }
 
     public function ajax_upload_products(){
