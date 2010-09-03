@@ -3,22 +3,33 @@ var PictureGallery = new (function(){
    /* CONSTRUCTOR
     **************************************************************************/
    this.initializer = function(_params){
-       params = _params;
+       params = $.extend({}, {
+           sel_input      : '',
+           sel_button     : '',
+           sel_ajaxloader : '',
+           sel_gallery    : '',
+           sel_msgerror   : '',
+           action         : '',
+           href_remove    : '',
+           defined_size   : false,
+           callback       : Function()
+       }, _params);
 
        //Crea el form
-       _form = $('<form action="'+params.action+'" method="post" enctype="multipart/form-data" target="picgalifr"></form>');
-       $('body').append(_form);
-
-       _iframe = $('<iframe id="picgalifr" name="picgalifr" src="about:blank"></iframe>').hide().bind('load', _iframe_load);
+       _form = $('<form action="'+params.action+'" method="post" enctype="multipart/form-data" target="picgalifr" style="border:1px solid red"></form>').hide();
+       _iframe = $('<iframe id="picgalifr" name="picgalifr" src="about:blank"></iframe>').bind('load', _iframe_load);
        _form.append(_iframe);
 
+       $('body').append(_form);
+
        $(params.sel_gallery+' li a.jq-removeimg').bind('click', _remove_image);
-   };
+  };
 
   /* PUBLIC METHODS
    **************************************************************************/
    this.upluad = function(){
         var input = $(params.sel_input);
+        var parent = input.parent();
         if( input.val() ){
             var ext = input.val().replace(/^([\W\w]*)\./gi, '').toLowerCase();
 
@@ -30,8 +41,11 @@ var PictureGallery = new (function(){
             $(params.sel_button)[0].disabled=true;
             $(params.sel_ajaxloader).show();
 
+            var inputclone = input.clone(true);
+
             _form.find(':file').remove();
-            _form.append(input.clone());
+            input.prependTo(_form);
+            parent.prepend(inputclone);
             _form.submit();
         }
         return false;
@@ -54,8 +68,6 @@ var PictureGallery = new (function(){
                     width       : newImg.width,
                     height      : newImg.height
                 });
-
-
             }
         });
        return data;
@@ -118,9 +130,13 @@ var PictureGallery = new (function(){
 
             li.find('a.jq-image').attr('href', output['href_image_full']);
             var img = li.find('img:first');
-                img.attr('src', output['href_image_thumb'])
-                   .attr('width', output['thumb_width'])
-                   .attr('height', output['thumb_height']);
+                img.attr('src', output['href_image_thumb']);
+
+            if( !params.defined_size ){
+                img.attr('width', output['thumb_width']).attr('height', output['thumb_height']);
+            }else{
+                img.attr('width', params.defined_size.width).attr('height', params.defined_size.height);
+            }
 
             var audata = {width : output['thumb_width'], height : output['thumb_height']};
 

@@ -21,10 +21,11 @@ class Products_model extends Model {
             'reference'     => $reference,
             'description'   => $_POST['txtDescription'],
             'content'       => $_POST['txtContent'],
+            'color'         => $_POST['txtColor'],
             'image_name'    => $json->image_thumb->filename_image,
             'image_width'   => $json->image_thumb->thumb_width,
             'image_height'  => $json->image_thumb->thumb_height,
-            'order'         => empty($order) ? 1 : ((int)$_POST['cboOrder']+1),
+            'order'         => $this->_get_num_order(TBL_PRODUCTS),
             'date_added'    => date('Y-m-d H:i:s')
          );
 
@@ -59,6 +60,7 @@ class Products_model extends Model {
             'reference'      => $reference,
             'description'    => $_POST['txtDescription'],
             'content'        => $_POST['txtContent'],
+            'color'          => $_POST['txtColor'],
             'last_modified'  => date('Y-m-d H:i:s')
          );
 
@@ -69,7 +71,7 @@ class Products_model extends Model {
          }
 
          // Esto es para cambiar el orden
-         if( $_POST['cboOrder']!=0 ){
+         /*if( $_POST['cboOrder']!=0 ){
              $this->db->select('products_id');
              $row = $this->db->get_where(TBL_PRODUCTS, array('order'=>$_POST['cboOrder']))->row_array();
              $id = $row['products_id'];
@@ -104,7 +106,7 @@ class Products_model extends Model {
                  $this->db->update(TBL_PRODUCTS, array('order'=>$n));
                  $n++;
              }
-         }
+         }*/
          //-----
 
 
@@ -169,14 +171,35 @@ class Products_model extends Model {
          return $this->db->get_where(TBL_PRODUCTS);
      }
 
-     public function get_info($id){
-         $info = $this->db->get_where(TBL_PRODUCTS, array('products_id'=>$id))->row_array();
+     public function get_list2(){
          $this->db->order_by('order', 'asc');
-         $info['gallery'] = $this->db->get_where(TBL_GALLERY, array('products_id'=>$id))->result_array();
-         return $info;
+         return $this->db->get_where(TBL_PRODUCTS);
      }
 
-     public function get_list_productsname($id){
+     public function get_info($id){
+         if( is_numeric($id) ){
+             $where = array('products_id'=>$id);
+         }else{
+             $where = array('reference'=>$id);
+         }
+
+         $query = $this->db->get_where(TBL_PRODUCTS, $where);
+
+         if( $query->num_rows==0 ) return false;
+         else{
+             $info = $query->row_array();
+             $this->db->order_by('order', 'asc');
+             $info['gallery'] = $this->db->get_where(TBL_GALLERY, array('products_id'=>$info['products_id']))->result_array();
+             return $info;
+         }
+     }
+
+     public function get_info2($ref){
+         $this->db->select('content, products_name');
+         return $this->db->get_where(TBL_PRODUCTS, array('reference'=>$ref))->row_array();
+     }
+
+     public function get_list_productsorder($id){
          $this->db->select('products_name, order');
          if( is_numeric($id) ) $this->db->where('products_id !=', $id);
          $this->db->order_by('order', 'asc');
@@ -185,6 +208,13 @@ class Products_model extends Model {
          else{
              return $query->result_array();
          }
+     }
+
+     public function get_list_productsname($ref){
+         $this->db->select('products_name, reference, color');
+         $this->db->where('reference !=', $ref);
+         $this->db->order_by('order', 'asc');
+         return $this->db->get_where(TBL_PRODUCTS)->result_array();
      }
 
     public function order(){
@@ -214,6 +244,12 @@ class Products_model extends Model {
 
     /* PRIVATE FUNCTIONS
      **************************************************************************/
+    private function _get_num_order($tbl_name){
+        $this->db->select_max('`order`');
+        $row = $this->db->get($tbl_name)->row_array();
+        return is_null($row['order']) ? 1 : $row['order']+1;
+    }
+
     private function _delete_images_tmp(){
         // Elimina archivos temporales de la galeria
         $dir = UPLOAD_PATH_GALLERY.".tmp/";

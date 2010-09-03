@@ -9,7 +9,7 @@ foreach( $listPages as $row ) {
     $class = $n%2 ? 'row-even' : '';
 ?>
         <tr class="<?=$class?>">
-            <td class="cell1"><a href="#cont<?=$n?>" class="fleft link-title" target="_blank" style="position: relative;" onclick="Contents.slideCont(this); return false;"><?=$row['title']?></a>
+            <td class="cell1"><a href="#cont<?=$n?>" class="fleft link-title2" target="_blank" style="position: relative;" onclick="Contents.slideCont(this); return false;"><?=$row['title']?></a>
                 <div id="cont<?=$n?>" class="clear hide">
                     <div class="success hide" style="margin-bottom:10px;">Los datos han sido guardado con &eacute;xito</div>
                     <div class="error hide" style="margin-bottom:10px;">Los datos no han podido ser guardados con &eacute;xito</div>

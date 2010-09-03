@@ -41,7 +41,7 @@
 
 <?php }?>
 
-<?php if( !$this->session->userdata('logged_in') ) {?>
+<?php if( $this->uri->segment(1)!="panel" ) {?>
 <div class="banner">
     <div class="mask"></div>
     <div id="slider">

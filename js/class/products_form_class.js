@@ -11,13 +11,14 @@ var Products = new (function(){
             remote : {
                 url  : baseURI+'panel/products/ajax_check_exists/',
                 type : "post",
-                data : {txtName:$('#txtName').val(), id:$('#products_id').val()},
+                data : {id:$('#products_id').val()},
                 complete : function(){
                     $('#txtName').focus();
                 }
             }
         };
         rules.txtDescription = 'required';
+        rules.txtColor = 'required';
 
         if( !mode_edit ) rules.txtImage = 'required';
 
@@ -36,17 +37,23 @@ var Products = new (function(){
         tinyMCE.init(TinyMCE_init);
 
         // ESTO ES PARA LA GALERIA DE IMAGEN
-        PictureGallery.initializer({
-            sel_input      : '#txtUploadFile',
-            sel_button     : '#btnUpload',
-            sel_ajaxloader : '#ajax-loader1',
-            sel_gallery    : '#gallery-image',
-            sel_msgerror   : '#pg-msgerror',
-            action         : baseURI+'panel/products/ajax_upload_gallery',
-            href_remove    : baseURI+'panel/products/ajax_upload_delete',
-            callback       : function(){
-                $('a.jq-image').fancybox();
-            }
+        $(document).ready(function(){
+            PictureGallery.initializer({
+                sel_input      : '#txtUploadFile',
+                sel_button     : '#btnUpload',
+                sel_ajaxloader : '#ajax-loader1',
+                sel_gallery    : '#gallery-image',
+                sel_msgerror   : '#pg-msgerror',
+                action         : baseURI+'panel/products/ajax_upload_gallery',
+                href_remove    : baseURI+'panel/products/ajax_upload_delete',
+                defined_size   : {
+                    width  : 130,
+                    height : 58
+                },
+                callback       : function(){
+                    $('a.jq-image').fancybox();
+                }
+            });
         });
 
         $("#gallery-image").sortable({
@@ -78,6 +85,7 @@ var Products = new (function(){
             }
 
             if( result['status']=="success" ) {
+                $('#ajaxupload-error').hide();
                 var output = result['output'][0];
 
                 $('#ajaxupload-thumb').attr('src', output['href_image_full'])
@@ -101,20 +109,26 @@ var Products = new (function(){
     };
 
     this.upload = function(el){
-        var ext = $(el).val().replace(/^([\W\w]*)\./gi, '').toLowerCase();
+        var input = $(el);
+        var parent = input.parent();
+        var ext = input.val().replace(/^([\W\w]*)\./gi, '').toLowerCase();
         
         if( !(ext && /^(jpg|png|jpeg|gif)$/.test(ext)) ){
             alert('Error: Solo se permiten imagenes');
             return false;
         }
 
-        var inputclone = $(el).clone();
+        var inputclone = input.clone(true);
+        inputclone[0].disabled = true;
 
-        el.disabled = true;
+        var form = $('#ajaxupload-form');
         $('#ajaxupload-load').show();
-        $('#ajaxupload-form input:file').remove();
+        form.find('input:file').remove();
+        input.prependTo(form);
+        parent.prepend(inputclone);
+        
         $('#ajaxupload-form iframe').attr('src', '');
-        $('#ajaxupload-form').append(inputclone).submit();
+        form.submit();
 
         return false;
     };

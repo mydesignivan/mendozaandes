@@ -18,11 +18,6 @@ var Products = new (function(){
 
                     var arr = $(this).sortable("toArray");
 
-                    alert(arr);
-                    alert(initorder);
-
-                    return;
-
                     var callback = function(){
                         list.sortable( "option", "disabled", false );
                     };

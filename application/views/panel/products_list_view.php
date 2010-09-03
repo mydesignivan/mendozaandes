@@ -32,7 +32,7 @@ foreach( $listProducts->result_array() as $row ) {
     $class = $n%2 ? 'row-even' : '';
 ?>
         <tr id="tr<?=$row['products_id']?>" class="<?=$class?>">
-            <td class="cell1"><a href="<?=$url?>"><?=$row['products_name']?></a></td>
+            <td class="cell1"><a href="<?=$url?>" class="link-title2"><?=$row['products_name']?></a></td>
             <td class="cell2"><a href="javascript:void(0)" class="handle"><img src="images/icon_arrow_move.png" alt="" width="16" alt="16" /></a></td>
             <td class="cell3"><a href="<?=$url?>"><img src="images/icon_edit.png" alt="" width="16" alt="16" /><span>Modificar</span></a></td>
             <td class="cell4"><a href="javascript:Products.del(<?=$row['products_id']?>)"><img src="images/icon_delete.png" alt="" width="16" alt="16" /><span>Eliminar</span></a></td>

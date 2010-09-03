@@ -40,8 +40,8 @@ class Products extends Controller {
 
         $data = array(
             'tlp_section' =>  'panel/products_form_view.php',
-            'tlp_script'  =>  array('plugins_validator', 'plugins_tinymce', 'plugins_fancybox', 'plugins_jqui_sortable', 'helpers_json', 'class_products_form'),
-            'listProductsName' => $this->products_model->get_list_productsname($id)
+            'tlp_script'  =>  array('plugins_validator', 'plugins_tinymce', 'plugins_fancybox', 'plugins_jqui_sortable', 'helpers_json', 'class_products_form')/*,
+            'listProductsName' => $this->products_model->get_list_productsname($id)*/
         );
 
         if( is_numeric($id) ){ // Edit
@@ -90,7 +90,7 @@ class Products extends Controller {
     /* AJAX FUNCTIONS
      **************************************************************************/
     public function ajax_check_exists(){
-        if( $_SERVER['REQUEST_METHOD']=="POST" && $_POST['txtName'] ){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
             echo json_encode(!$this->products_model->check_exists($_POST['txtName'], $_POST['id']));
         }
     }

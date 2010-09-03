@@ -28,25 +28,40 @@ class Products extends Controller {
             'tlp_section'        => 'frontpage/ourproducts_view.php',
             'tlp_title_section'  => 'Our Products',
             'tlp_content_footer' => $this->contents_model->get_content('footer'),
-            'content'            => $this->contents_model->get_content('our-products')
+            'content'            => $this->contents_model->get_content('our-products'),
+            'listProducts'       => $this->products_model->get_list2()
         ));
         $this->load->view('template_frontpage_view', $this->_data);
     }
 
     public function show(){
-        $ref = $this->uri->segment(1);
+        $ref = $this->uri->segment(2);
         if( $ref ){
-            $info = $this->products_model->get(array('reference'=>$ref));
+            $info = $this->products_model->get_info($ref);
 
             $this->_data = $this->dataview->set_data(array(
-                'tlp_section'       => 'frontpage/product_view.php',
-                'tlp_title_section' => $info['product_name'],
-                'info'              => $info
+                'tlp_section'        => 'frontpage/products_view.php',
+                'tlp_title_section'  => $info['products_name'],
+                'tlp_script'         => array('plugins_adgallery', 'class_products'),
+                'tlp_content_footer' => $this->contents_model->get_content('footer'),
+                'info'               => $info,
+                'listProductsName'   => $this->products_model->get_list_productsname($ref)
             ));
             $this->load->view('template_frontpage_view', $this->_data);
         }
     }
 
+    public function showcontent(){
+        $ref = $this->uri->segment(3);
+        if( $ref ){
+            $info = $this->products_model->get_info2($ref);
+            $data = array(
+                'tlp_title' => $info['products_name'],
+                'content'   => $info['content']
+            );
+            $this->load->view('template_contentprint_view', $data);
+        }
+    }
 
     /* AJAX FUNCTIONS
      **************************************************************************/

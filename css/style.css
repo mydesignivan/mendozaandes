@@ -46,6 +46,11 @@ h1.title-section{
     margin: 2px;
     border: 2px solid #A5A5A5;
 }
+.content-print{
+    padding: 20px;
+    width: 600px;
+    text-align: left;
+}
 
 /*------------------------------------------------------------------------------
  - ESTILO PARA MENSAJES DEL VALIDADOR
@@ -77,6 +82,7 @@ h1.title-section{
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LINK
  -----------------------------------------------------------------------------*/
+a:link{color: #000;}
 a.link-moreinfo{
     font-size: 90%;
     color: #D38D2A;
@@ -86,6 +92,22 @@ a.link-moreinfo{
 a.link-title{
     font-weight: bold;
     font-size: 115%;
+}
+a.link-title2{
+    font-weight: bold;
+    font-size: 100%;
+    color: #732916;
+}
+a.link-title2:hover{color:#38170E;}
+a.link-icon{
+    font-size: 100%;
+}
+a.link-icon img{position: relative;top:5px;}
+a.link-product{
+    position: relative;
+    font-size: 100%;
+    font-weight: bold;
+    color: #111;
 }
 
 /*------------------------------------------------------------------------------
@@ -174,14 +196,14 @@ fieldset{
 
 fieldset.gallery-panel{
     float:left;
-    width: 500px;
+    width: 640px;
     height: 200px;
     padding-top: 10px;
     margin-bottom: 10px;
 }
     fieldset.gallery-panel .cont{
         float: left;
-        width: 500px;
+        width: 640px;
         height: 200px;
         position: relative;
         overflow: auto;
@@ -196,15 +218,17 @@ fieldset.gallery-panel{
             list-style-type: none;
             display: inline;
             float:left;
+            width: 130px;
+            height: 90px;
             margin: 0 8px 8px 0;
             padding:5px;
             background-color: #EEF3F6;
-            border: 1px solid #003366;
-            /*-moz-border-radius: 2px;
-            -webkit-border-radius: 2px;*/
+            border: 2px solid #A5A5A5;
+            text-align: center;
         }
-            fieldset.gallery-panel ul li .jq-image{
-                margin-bottom: 5px;
+            fieldset.gallery-panel ul li .d1{
+                clear: both;
+                margin-top: 5px;
             }
 
 
@@ -249,7 +273,7 @@ fieldset.gallery-panel{
  -----------------------------------------------------------------------------*/
 .header .menu{
     float: right;
-    background: url(../images/menu.png) no-repeat;
+    background: url(../images/menu.png) no-repeat right;
     width: 730px;
     height: 50px;
 }
@@ -303,11 +327,48 @@ fieldset.gallery-panel{
  -----------------------------------------------------------------------------*/
 .main-container{
     margin-top: -130px;
+    /*border: 1px solid red;*/
 }
     .main-container .content{
         padding: 10px 20px 0 20px;
         width: 920px;
     }
+    .main-container .content-column1{
+        float: left;
+        width: 655px;
+        /*border:1px solid red;*/
+    }
+        .main-container .content-column1 ul{
+            margin-top: -15px !important;
+        }
+    .main-container .content-column2{
+        float: right;
+        background: url(../images/bg-sidebar.png) no-repeat;
+        width: 170px;
+        height: 340px;
+        padding: 50px 40px 0 40px;
+        margin-top: -15px;
+    }
+        .main-container .content-column2 .list{
+            margin: 0;
+            padding: 0;
+        }
+            .main-container .content-column2 .list li{
+                display: list-item;
+                margin-bottom: 15px;
+                list-style-type: none;
+            }
+            .main-container .content-column2 .list a.link-title{
+                font-size: 100% !important;
+            }
+            .main-container .content-column2 .list .line{
+                position: relative;
+                width: 168px;
+                height: 6px;
+                margin: 2px 0 5px 0;
+                font-size: 0%;
+            }
+
 
 /*------------------------------------------------------------------------------
  - ESTILO QUE ESTAN EN EL "FOOTER"
@@ -331,6 +392,7 @@ fieldset.gallery-panel{
     padding: 0;
 }
     .products li{
+        position: relative;
         display: inline;
         float: left;
         background: url(../images/bg-pack.png) no-repeat;
@@ -340,12 +402,6 @@ fieldset.gallery-panel{
         margin: 0 20px 10px 0;
         /*border:1px solid red;*/
     }
-        .products li h3{
-            color: #000;
-            font-weight: bold;
-            font-size: 95%;
-            margin-bottom: 0;
-        }
         .products li .text{
             float: left;
             clear: left;
@@ -355,12 +411,17 @@ fieldset.gallery-panel{
             font-style: italic;
             color: #87888A;
         }
-        .products li .d1{
-            float: left;
-            clear: left;
-            text-align: right;
-            width: 163px;
-            margin-top: -12px;
+        .products li .link-moreinfo{
+            position: absolute;
+            top:210px;
+            left: 125px;
+        }
+        .products li .line{
+            position: relative;
+            width: 168px;
+            height: 6px;
+            margin: 2px 0 5px 0;
+            font-size: 0%;
         }
 
 /*------------------------------------------------------------------------------
