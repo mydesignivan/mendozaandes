@@ -85,11 +85,20 @@ function display_error($file, $function, $err, $param=array()){
     show_error($err);
 }
 
-function add_date($givendate, $day=0, $mth=0, $yr=0) {
+function add_date($givendate, $format='d-m-Y h:i:s', $params=array('d'=>0, 'm'=>0, 'y'=>0, 'h'=>0, 'i'=>0, 's'=>0)) {
+    $p = array(
+        'd' => !isset($params['d']) ? 0 : $params['d'],
+        'm' => !isset($params['m']) ? 0 : $params['m'],
+        'y' => !isset($params['y']) ? 0 : $params['y'],
+        'h' => !isset($params['h']) ? 0 : $params['h'],
+        'i' => !isset($params['i']) ? 0 : $params['i'],
+        's' => !isset($params['s']) ? 0 : $params['s']
+    );
+
     $cd = strtotime($givendate);
-    $newdate = date('d-m-Y h:i:s', mktime(date('h',$cd),
-    date('i',$cd), date('s',$cd), date('m',$cd)+$mth,
-    date('d',$cd)+$day, date('Y',$cd)+$yr));
+    $newdate = date($format, mktime(date('h',$cd)+$p['h'],
+    date('i',$cd)+$p['i'], date('s',$cd)+$p['s'], date('m',$cd)+$p['m'],
+    date('d',$cd)+$p['d'], date('Y',$cd)+$p['y']));
     return $newdate;
 }
 

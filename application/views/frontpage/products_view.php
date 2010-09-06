@@ -8,7 +8,7 @@
         <?php
         $n=-1;
         foreach( $info['gallery'] as $row ){$n++;?>
-                <li><a href="<?=UPLOAD_PATH_GALLERY.$row['image']?>"><img src="<?=UPLOAD_PATH_GALLERY.$row['thumb']?>" alt="" width="<?=$row['width']?>" height="<?=$row['height']?>" class="image<?=$n?>"></a></li>
+                <li><a href="<?=UPLOAD_PATH_GALLERY.$row['image']?>"><img src="<?=UPLOAD_PATH_GALLERY.$row['thumb']?>" alt="" width="<?=$row['width']?>" height="<?=$row['height']?>" class="image<?=$n?>" /></a></li>
         <?php }?>
             </ul>
         </div>

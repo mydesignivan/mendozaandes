@@ -6,6 +6,7 @@ class Products extends Controller {
     function __construct(){
         parent::Controller();
 
+        //$this->output->cache(CACHE_TIME);
         $this->load->model('products_model');
         $this->load->model('contents_model');
 

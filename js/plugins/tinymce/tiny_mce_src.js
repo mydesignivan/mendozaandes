@@ -1144,6 +1144,7 @@ tinymce.create('static tinymce.util.XHR', {
 
 				if (!f || f(n)) {
 					if (c)
+
 						o.push(n);
 					else
 						return n;
@@ -4699,6 +4700,7 @@ window.tinymce.dom.Sizzle = Sizzle;
 	// Shorten names
 	var each = tinymce.each, DOM = tinymce.DOM, isIE = tinymce.isIE, isWebKit = tinymce.isWebKit, Event;
 
+
 	tinymce.create('tinymce.dom.EventUtils', {
 		EventUtils : function() {
 			this.inits = [];
@@ -6607,6 +6609,7 @@ window.tinymce.dom.Sizzle = Sizzle;
 										w.writeAttribute(a, v);
 								}
 							}
+
 						}
 
 						// Keep type attribute
@@ -12242,6 +12245,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 
 			// Opera needs this one backwards for older versions
 			if (isOpera && parseFloat(opera.version()) < 9.5) {
+
 				r.insertNode(bef);
 				r.insertNode(aft);
 			} else {
@@ -13195,6 +13199,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 
 			function findFormatRoot(container) {
 				var formatRoot;
+
 
 				// Find format root
 				each(getParents(container.parentNode).reverse(), function(parent) {

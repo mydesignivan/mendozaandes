@@ -51,6 +51,17 @@ h1.title-section{
     width: 600px;
     text-align: left;
 }
+.content-error{
+    padding: 20px 20px 12px 20px;
+    text-align: center;
+}
+.content-error h1 {
+    font-weight: normal;
+    font-size: 180%;
+    color: #990000;
+    margin: 0 0 4px 0;
+}
+
 
 /*------------------------------------------------------------------------------
  - ESTILO PARA MENSAJES DEL VALIDADOR

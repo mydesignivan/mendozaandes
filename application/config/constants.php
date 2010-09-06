@@ -123,6 +123,12 @@ define('META_DESCRIPTION_ADVISE', '');
 define('META_DESCRIPTION_TRAVELTIPS', '');
 define('META_DESCRIPTION_CONTACTUS', '');
 
+/*
+|--------------------------------------------------------------------------
+| CONFIGURACION GENERAL
+|--------------------------------------------------------------------------
+*/
+define('CACHE_TIME', 5);
 
 
 /* End of file constants.php */

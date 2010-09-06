@@ -6,13 +6,17 @@
     <title><?=TITLE_GLOBAL . @$tlp_title;?></title>
     <meta name="robots" content="none" />
 
-    <?php require('includes/head_inc.php');?>
-    <?php if( isset($tlp_script) && !empty($tlp_script) ) {
+<?php
+    require('includes/head_inc.php');
+
+    if( isset($tlp_script) && !empty($tlp_script) ) {
         if( !is_array($tlp_script) ) $tlp_script = array($tlp_script);
-        foreach( $tlp_script as $file ){
-            require('js/includes/'.$file.'_inc.php');
+        foreach ( $tlp_script as $filename ){
+            require('./js/includes/'.$filename.'_inc.php');
         }
-    }?>
+        echo '<script type="text/javascript" src="'. site_url('load/js/'.implode('/', $tlp_script)) .'"></script>'.chr(13);
+    }
+?>
 </head>
 
 <body>

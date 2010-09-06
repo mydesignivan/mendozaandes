@@ -43,13 +43,6 @@ var Account = new (function(){
         });
 
         $('#form1').validate(_optval);
-
-        // Configura el editor
-        /*TinyMCE_init.width = '600px';
-        TinyMCE_init.height = '180px';*/
-        TinyMCE_init.theme = 'simple';
-        tinyMCE.init(TinyMCE_init);
-
     };
 
     this.showcontapass = function(el){

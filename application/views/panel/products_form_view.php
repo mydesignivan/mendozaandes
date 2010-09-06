@@ -37,11 +37,12 @@ $src = isset($info) ? UPLOAD_PATH_PRODUCTS . $info['image_name'] : '';
         <img id="ajaxupload-thumb" src="<?=$src?>" alt="<?=@$info['image_name']?>" width="<?=@$info['image_width']?>" height="<?=@$info['image_height']?>" class="fleft thumbframe1 <?php if( $src=='' ) echo 'hide'?>" />
         <div class="fleft">
             <div class="fleft">
-                <input type="file" id="txtImage" name="txtImage" class="ajaxupload-input" size="20" onchange="Products.upload(this);" />
+                <input type="file" id="txtImage" name="txtImage" class="ajaxupload-input" size="20" />&nbsp;
+                <button id="btnUpload2" type="button" onclick="Products.upload();" class="float-left">Subir</button>
                 <img id="ajaxupload-load" src="images/ajax-loader4.gif" alt="Loading..." width="43" height="11" class="hide" />
             </div>
-            <label class="clear fleft label-leyend">M&aacute;ximo 2 megas por foto (gif, jpg o png)</label>
-            <div id="ajaxupload-error" class="clear error hide"></div>
+            <label class="clear fleft label-leyend">M&aacute;ximo 2 megas por foto (gif, jpg, jpeg o png)</label>
+            <div id="ajaxupload-error" class="clear error span-7 hide">Este campo es obligatorio.</div>
         </div>
         <input type="hidden" name="image_old" value="<?=$src?>" />
     </div>
@@ -78,13 +79,13 @@ $src = isset($info) ? UPLOAD_PATH_PRODUCTS . $info['image_name'] : '';
             </fieldset>
 
             <div class="fleft clear">
-                <div class="fleft">
-                    <input type="file" size="22" name="txtUploadFile" id="txtUploadFile" />
+                <div class="span-10 last">
+                    <input type="file" size="22" name="txtUploadFile" id="txtUploadFile" />&nbsp;
                     <button id="btnUpload" type="button" onclick="PictureGallery.upluad()" class="float-left">Subir</button>
                     <img id="ajax-loader1" src="images/ajax-loader4.gif" alt="Loading..." width="43" height="11" class="hide" />
                 </div>
-                <div class="clear span-10"><label class="label-leyend">M&aacute;ximo 2 megas por foto (gif, jpg o png)</label></div>
-                <div id="pg-msgerror" class="clear error hide"></div>
+                <div class="clear span-10"><label class="label-leyend">M&aacute;ximo 2 megas por foto (gif, jpg, jpeg o png)</label></div>
+                <div id="pg-msgerror" class="clear error span-7 hide">Este campo es obligatorio</div>
             </div>
         </div>
     </div>

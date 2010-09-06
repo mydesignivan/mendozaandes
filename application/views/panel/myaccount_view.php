@@ -23,7 +23,7 @@
         <label for="txtInfo" class="label label2">Contrase&ntilde;a</label>
         <button type="button" onclick="Account.showcontapass(this);">Modificar</button>
     </div>
-    <div id="contPass" class="hide">
+    <div id="contPass" class="clear hide">
         <div class="trow">
             <label for="txtPassOld" class="label label2">* Contrase&ntilde;a actual</label>
             <input type="password" name="txtPassOld" id="txtPassOld" class="input-contact" />

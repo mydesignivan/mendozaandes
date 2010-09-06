@@ -3,6 +3,7 @@ var Products = new (function(){
     /* PUBLIC METHODS
      **************************************************************************/
     this.initializer = function(mode_edit){
+        _mode_edit = mode_edit;
 
         // Configura el Validador
         var rules={};
@@ -19,8 +20,6 @@ var Products = new (function(){
         };
         rules.txtDescription = 'required';
         rules.txtColor = 'required';
-
-        if( !mode_edit ) rules.txtImage = 'required';
 
         var o = $.extend({}, jQueryValidatorOptDef, {
             rules : rules,
@@ -72,8 +71,8 @@ var Products = new (function(){
             var content = this.contentDocument || this.contentWindow.document;
                 content = content.body.innerHTML;
 
-            var i = $('input.ajaxupload-input');
-            i[0].disabled = false;
+            $('#btnUpload2')[0].disabled=false;
+            
             $('#ajaxupload-load').hide();
 
             var result;
@@ -108,8 +107,9 @@ var Products = new (function(){
 
     };
 
-    this.upload = function(el){
-        var input = $(el);
+    this.upload = function(){
+        var input = $('#txtImage');
+        if( !input.val() ) return false;
         var parent = input.parent();
         var ext = input.val().replace(/^([\W\w]*)\./gi, '').toLowerCase();
         
@@ -119,10 +119,12 @@ var Products = new (function(){
         }
 
         var inputclone = input.clone(true);
-        inputclone[0].disabled = true;
 
         var form = $('#ajaxupload-form');
+
+        $('#btnUpload2')[0].disabled=true;
         $('#ajaxupload-load').show();
+        
         form.find('input:file').remove();
         input.prependTo(form);
         parent.prepend(inputclone);
@@ -137,6 +139,7 @@ var Products = new (function(){
     /* PRIVATE PROPERTIES
      **************************************************************************/
      var _ajaxupload_output=false;
+     var _mode_edit=false;
 
     /* PRIVATE METHODS
      **************************************************************************/
@@ -154,6 +157,12 @@ var Products = new (function(){
      };
 
      var _on_submit = function(form){
+        if( !_ajaxupload_output && !_mode_edit ){
+            $('#txtImage').css('border-style', 'dashed');
+            $('#ajaxupload-error').html('Este campo es obligatorio.').show();
+            return false;
+        }else $('#txtImage').css('border-style', 'solid');
+
         if( $('#gallery-image li').length==0 || $('#gallery-image').is(':hidden') ){
             $('#pg-msgerror').html('Debe ingresar al menos una im&aacute;gen').show();
             return false;
@@ -169,7 +178,7 @@ var Products = new (function(){
         var data={};
         data.gallery={};
         data.gallery.images_new = PictureGallery.get_images_new();
-        if( $('#products_id').val() ) {
+        if( _mode_edit ) {
             data.gallery.images_del = PictureGallery.get_images_del();
             data.gallery.images_order = PictureGallery.get_orders();
         }

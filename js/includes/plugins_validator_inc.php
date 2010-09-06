@@ -1,3 +1,7 @@
-<script type="text/javascript" src="js/plugins/jquery-validate/jquery.validate.pack.js"></script>
-<script type="text/javascript" src="js/plugins/jquery-validate/localization/messages_es.js"></script>
-<script type="text/javascript" src="js/plugins/jquery-validate/config.js"></script>
+<?php
+if( isset($_modejs) ){
+    $script_js[] = "plugins/jquery-validate/jquery.validate.pack";
+    $script_js[] = "plugins/jquery-validate/localization/messages_es";
+    $script_js[] = "plugins/jquery-validate/config";
+}
+?>

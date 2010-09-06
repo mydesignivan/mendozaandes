@@ -59,7 +59,7 @@ var PictureGallery = new (function(){
             var tagImg = tagA.find('img');
 
             if( li.data('au-newimg') ){
-                var newImg = Image();
+                var newImg = new Image();
                 newImg.src = tagImg.attr('src');
 
                 data.push({

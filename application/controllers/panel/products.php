@@ -40,7 +40,7 @@ class Products extends Controller {
 
         $data = array(
             'tlp_section' =>  'panel/products_form_view.php',
-            'tlp_script'  =>  array('plugins_validator', 'plugins_tinymce', 'plugins_fancybox', 'plugins_jqui_sortable', 'helpers_json', 'class_products_form')/*,
+            'tlp_script'  =>  array('plugins_validator', 'plugins_tiny_mce', 'plugins_fancybox', 'plugins_jqui_sortable', 'helpers_json', 'class_products_form')/*,
             'listProductsName' => $this->products_model->get_list_productsname($id)*/
         );
 
@@ -131,7 +131,8 @@ class Products extends Controller {
                 'image_height'    => IMAGE_FULL_GALLERY_HEIGHT,
                 'maxsize'         => UPLOAD_MAXSIZE,
                 'filetype'        => UPLOAD_FILETYPE,
-                'filename_prefix' => $this->session->userdata('users_id')."_"
+                'filename_prefix' => $this->session->userdata('users_id')."_",
+                'master_dim'      => 'height'
             );
             $this->superupload->initialize($config);
             echo json_encode($this->superupload->upload('txtUploadFile'));

@@ -44,7 +44,7 @@ class SuperUpload{
             'thumb_height'    => $params['thumb_height'], //Obligatorio
             'image_width'     => @$params['image_width'], //Obligatorio
             'image_height'    => @$params['image_height'], //Obligatorio
-            'master_dim'      => !isset($params['master_dim']) ? 'auto' : $params['master_dim'],
+            'master_dim'      => !isset($params['master_dim']) ? 'auto' : $params['master_dim'],  // auto, width, height
             'maxsize'         => !isset($params['maxsize']) ? 2048 : $params['maxsize'],
             'filetype'        => !isset($params['filetype']) ? 'gif|jpg|png' : $params['filetype'],
             'error_uploaded'  => !isset($params['error_uploaded']) ? 'El archivo no ha podido llegar al servidor' : $params['error_uploaded'],
