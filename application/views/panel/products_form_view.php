@@ -79,9 +79,9 @@ $src = isset($info) ? UPLOAD_PATH_PRODUCTS . $info['image_name'] : '';
             </fieldset>
 
             <div class="fleft clear">
-                <div class="span-10 last">
+                <div class="span-14 last">
                     <input type="file" size="22" name="txtUploadFile" id="txtUploadFile" />&nbsp;
-                    <button id="btnUpload" type="button" onclick="PictureGallery.upluad()" class="float-left">Subir</button>
+                    <button id="btnUpload" type="button" onclick="PictureGallery.upluad()">Subir</button>&nbsp;
                     <img id="ajax-loader1" src="images/ajax-loader4.gif" alt="Loading..." width="43" height="11" class="hide" />
                 </div>
                 <div class="clear span-10"><label class="label-leyend">M&aacute;ximo 2 megas por foto (gif, jpg, jpeg o png)</label></div>

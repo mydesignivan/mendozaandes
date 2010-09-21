@@ -25,15 +25,15 @@
 </div>
 
 <?php }else{ // "FRONTPAGE"
-    $page = $this->uri->segment(1);?>
+    $page = $this->uri->segment(1);
+?>
 
 <div class="clear span-24 last"> 
     <div class="menu">
         <ul>
-            <li <?php if( $page=="" || $page=="who-whe-are" ) echo 'class="current"';?>><a href="<?=site_url('who-whe-are');?>">Who Whe Are</a></li>
-            <li <?php if( $page=="our-products" ) echo 'class="current"';?>><a href="<?=site_url('/our-products/')?>">Our Products</a></li>
-            <li <?php if( $page=="advise" ) echo 'class="current"';?>><a href="<?=site_url('/advise/')?>">Advise</a></li>
-            <li <?php if( $page=="travel-tips" ) echo 'class="current"';?>><a href="<?=site_url('/travel-tips/')?>">Travel Tips</a></li>
+            <li <?php if( $page=="" || $page=="our-goals-and-believes" ) echo 'class="current"';?>><a href="<?=site_url('our-goals-and-believes');?>">Our goals and believes</a></li>
+            <li <?php if( $page=="our-products" && $this->uri->segment(2)!="tailor-made-mendoza" ) echo 'class="current"';?>><a href="<?=site_url('/our-products/')?>">Our Products</a></li>
+            <li <?php if( $page=="our-products" && $this->uri->segment(2)=="tailor-made-mendoza" ) echo 'class="current"';?>><a href="<?=site_url('/our-products/tailor-made-mendoza/')?>">Tailor made Mendoza</a></li>
             <li class="no-line <?php if( $page=="contact-us" ) echo 'current';?>"><a href="<?=site_url('/contact-us/')?>">Contact Us</a></li>
         </ul>
     </div>

@@ -285,8 +285,9 @@ fieldset.gallery-panel{
 .header .menu{
     float: right;
     background: url(../images/menu.png) no-repeat right;
-    width: 730px;
+    width: 760px;
     height: 50px;
+    /*border:1px solid red;*/
 }
     .header .menu ul{
         float: left;
@@ -303,7 +304,7 @@ fieldset.gallery-panel{
         color: #000;
         font-weight: bold;
         font-size: 125%;
-        padding: 0 15px 0 15px;
+        padding: 0 10px 0 10px;
     }
     .header .menu  li a:hover{
         color: #fff;

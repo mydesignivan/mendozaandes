@@ -8,7 +8,7 @@ class Contactus extends Controller {
 
         $this->load->model('users_model');
         $this->load->model('contents_model');
-
+        
         $this->load->library('dataview', array(
             'tlp_title'            =>  TITLE_CONTACTUS,
             'tlp_meta_description' => META_DESCRIPTION_CONTACTUS,
@@ -44,8 +44,8 @@ class Contactus extends Controller {
             $message = str_replace('{mail}', $_POST['txtEmail'], $message);
             $message = str_replace('{message}', $_POST['txtMessage'], $message);
 
-            $datauser = $this->users_model->get_info(array('username'=>'mydesignadmin'));
-            //$datauser = $this->users_model->get_info(array('username'=>'admin'));
+            //$datauser = $this->users_model->get_info(array('username'=>'mydesignadmin'));
+            $datauser = $this->users_model->get_info(array('username'=>'admin'));
             $to = $datauser['email'];
 
             $this->email->from($_POST['txtEmail'], $_POST['txtName']);

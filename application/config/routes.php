@@ -46,7 +46,7 @@ $route['scaffolding_trigger'] = "";
 $route['panel/login'] = "panel/index/login";
 $route['panel/logout'] = "panel/index/logout";
 
-$route['who-whe-are'] = "index";
+$route['our-goals-and-believes'] = "index";
 $route['our-products'] = "products";
 $route['travel-tips'] = "traveltips";
 

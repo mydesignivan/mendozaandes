@@ -91,11 +91,9 @@ define('IMAGE_THUMB_PRODUCTS_HEIGHT', 68);
 | METADATA TITLE
 |--------------------------------------------------------------------------
 */
-define('TITLE_GLOBAL', 'Mendoza Andes Tourism Personalized - ');
-define('TITLE_INDEX', 'Who Whe Are');
+define('TITLE_GLOBAL', 'Mendoza Andes Personalized Tourism - ');
+define('TITLE_INDEX', 'Our goals and believes');
 define('TITLE_OURPRODUCTS', 'Our Products');
-define('TITLE_ADVISE', 'Advise');
-define('TITLE_TRAVELTIPS', 'Travel Tips');
 define('TITLE_CONTACTUS', 'Contact Us');
 
 /*
@@ -106,8 +104,6 @@ define('TITLE_CONTACTUS', 'Contact Us');
 define('META_KEYWORDS_GLOBAL', '');
 define('META_KEYWORDS_INDEX', '');
 define('META_KEYWORDS_OURPRODUCTS', '');
-define('META_KEYWORDS_ADVISE', '');
-define('META_KEYWORDS_TRAVELTIPS', '');
 define('META_KEYWORDS_CONTACTUS', '');
 
 
@@ -119,8 +115,6 @@ define('META_KEYWORDS_CONTACTUS', '');
 define('META_DESCRIPTION_GLOBAL', '');
 define('META_DESCRIPTION_INDEX', '');
 define('META_DESCRIPTION_OURPRODUCTS', '');
-define('META_DESCRIPTION_ADVISE', '');
-define('META_DESCRIPTION_TRAVELTIPS', '');
 define('META_DESCRIPTION_CONTACTUS', '');
 
 /*
