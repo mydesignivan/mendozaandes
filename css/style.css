@@ -269,7 +269,7 @@ fieldset.gallery-panel{
  -----------------------------------------------------------------------------*/
 .header .logo{
     float: left;
-    margin:50px 0 0 20px;
+    margin:19px 0 -40px 20px;
 }
 
 .header-bottom{
@@ -277,7 +277,7 @@ fieldset.gallery-panel{
     float: left;
     background: url(../images/bg-header-bottom.jpg) no-repeat;
     width: 960px;
-    height: 176px;
+    height: 161px;
 }
 
 /* MENU
@@ -285,13 +285,14 @@ fieldset.gallery-panel{
 .header .menu{
     float: right;
     background: url(../images/menu.png) no-repeat right;
-    width: 760px;
+    width: 730px;
     height: 50px;
     /*border:1px solid red;*/
 }
     .header .menu ul{
-        float: left;
-        margin: 18px 0 0 100px;
+        float: right;
+        width:660px;
+        margin: 18px 0 0 0;
         /*border:1px solid red;*/
     }
     .header .menu li{
@@ -318,7 +319,7 @@ fieldset.gallery-panel{
     float: left;
     clear: both;
     width: 960px;
-    height: 350px;
+    height: 307px;
     position: relative;
     overflow: hidden;
 }
@@ -326,7 +327,7 @@ fieldset.gallery-panel{
         position: absolute;
         top:0;left:0;
         width: 960px;
-        height: 350px;
+        height: 307px;
         background: url(../images/bg-banner.png) no-repeat;
         z-index: 100;
     }

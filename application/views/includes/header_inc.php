@@ -2,7 +2,7 @@
 
 <!-- =============== TOP HEADER =============== -->
 <div class="span-24 last"> 
-    <div class="logo"><a href="<?=$this->config->item('base_url');?>"><img src="images/logo.png" alt="Mendoza Andes" width="256" height="181" /></a></div>
+    <div class="logo"><a href="<?=$this->config->item('base_url');?>"><img src="images/logo.png" alt="Mendoza Andes" width="209" height="152" /></a></div>
 </div>
 
 <!-- =============== MENU =============== -->
@@ -45,9 +45,39 @@
 <div class="banner">
     <div class="mask"></div>
     <div id="slider">
-        <img src="images/banner/passion-for-wines.jpg" alt="Passion for wines" width="960" height="350" />
-        <img src="images/banner/personalized-tour.jpg" alt="Personalized tour" width="960" height="350" />
-        <img src="images/banner/we-can-do-it.jpg" alt="We can do it" width="960" height="350" />
+<?php
+switch($this->uri->segment(2)){
+    default:
+        echo '<img src="images/banner/passion-for-wines.jpg" alt="Passion for wines" width="960" height="350" />';
+        echo '<img src="images/banner/personalized-tour.jpg" alt="Personalized tour" width="960" height="350" />';
+        echo '<img src="images/banner/we-can-do-it.jpg" alt="We can do it" width="960" height="350" />';
+    break;
+    case 'personalized-wine-tour':
+        echo '<img src="images/banner/personalized-wine-tour-FOTO.jpg" alt="Personalized Wine Tour" width="960" height="350" />';
+    break;
+    case 'gaucho-day':
+        echo '<img src="images/banner/gaucho-day.jpg" alt="Gaucho Day" width="960" height="350" />';
+    break;
+    case 'dakar-day-aconcagua':
+        echo '<img src="images/banner/dakar-day-aconcagua.jpg" alt="Dakar Day Aconcagua" width="960" height="350" />';
+    break;
+    case 'dakar-day-intensive':
+        echo '<img src="images/banner/dakar-intensive.jpg" alt="Dakar Intensive" width="960" height="350" />';
+    break;
+    case 'dakar-photography':
+        echo '<img src="images/banner/dakar-photography.jpg" alt="Dakar Photography" width="960" height="350" />';
+    break;
+    case 'dakar-trekking':
+        echo '<img src="images/banner/trekking.jpg" alt="Dakar trekking" width="960" height="350" />';
+    break;
+    case 'dakar-mix':
+        echo '<img src="images/banner/dakar-mix.jpg" alt="Dakar Mix" width="960" height="350" />';
+    break;
+    case 'tailor-made-mendoza':
+        echo '<img src="images/banner/tailor-made.jpg" alt="Tailor made mendoza" width="960" height="350" />';
+    break;
+}
+?>
     </div>
 </div>
 <?php }?>
